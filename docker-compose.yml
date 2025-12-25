@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  # .NET Backend API
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: parking-api
+    ports:
+      - "5000:5000"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_URLS=http://+:5000
+    networks:
+      - parking-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/api/parking/dashboard"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # React Frontend
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        - VITE_API_URL=http://localhost:5000
+    container_name: parking-frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    networks:
+      - parking-network
+    restart: unless-stopped
+
+networks:
+  parking-network:
+    driver: bridge
+
