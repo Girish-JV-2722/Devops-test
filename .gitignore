@@ -1,0 +1,62 @@
+# =========================
+# Node.js / Frontend
+# =========================
+node_modules/
+dist/
+build/
+.npm
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# =========================
+# .NET / Backend
+# =========================
+bin/
+obj/
+*.user
+*.suo
+*.cache
+*.dll
+*.pdb
+*.exe
+.vs/
+*.userprefs
+packages/
+
+# =========================
+# IDE / Editor
+# =========================
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# =========================
+# Environment / Secrets
+# =========================
+.env
+.env.local
+.env.*.local
+*.env
+appsettings.*.json
+!appsettings.json
+!appsettings.Development.json
+
+# =========================
+# Docker (optional)
+# =========================
+# Uncomment if you don't want to track Docker files
+# docker-compose.override.yml
+
+# =========================
+# Misc
+# =========================
+*.tmp
+*.temp
+*.bak
+
